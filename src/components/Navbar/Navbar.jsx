@@ -6,7 +6,7 @@ const Navbar = props => {
   return (
     <nav>
       <Link to="/" className="nav__projectName">
-        Project Name
+        Pay at the table App
       </Link>
 
       <div className="nav__authLinks">
@@ -20,9 +20,10 @@ const Navbar = props => {
             </button>
           </>
         ) : (
-          <>
+            <>
+              <h4>Admin Access</h4>
             <Link to="/auth/signup" className="authLink">
-              Signup
+              Join?
             </Link>
             <Link to="/auth/login" className="authLink">
               Log In
