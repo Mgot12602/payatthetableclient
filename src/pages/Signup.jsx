@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { signup } from "../services/auth";
 import "./auth.css";
+import * as PATHS from "../utils/paths";
 
 export default class Signup extends Component {
   state = {
@@ -30,7 +31,7 @@ export default class Signup extends Component {
       }
       localStorage.setItem("accessToken", res.data.accessToken);
       this.props.authenticate(res.data.user);
-      this.props.history.push("/");
+      this.props.history.push(PATHS.VIEWALLORDERS);
     });
   };
 

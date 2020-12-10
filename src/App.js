@@ -10,9 +10,12 @@ import NormalRoute from "./routing-components/NormalRoute";
 import ProtectedRoute from "./routing-components/ProtectedRoute";
 import { getLoggedIn, logout } from "./services/auth";
 import * as PATHS from "./utils/paths";
-import ViewAllOrders from "./pages/admin/ViewAllOrders";
-import CreateMenu from "./pages/admin/CreateMenu";
-import CreateDish from "./pages/admin/CreateDish";
+import ViewAllOrders from "./pages/Admin/ViewAllOrders";
+import CreateMenu from "./pages/Admin/CreateMenu";
+import CreateDish from "./pages/Admin/CreateDish";
+import MenuPage from "./pages/Customer/MenuPage";
+import OrderPage from "./pages/Customer/OrderPage";
+import { Route } from "react-router-dom";
 
 class App extends React.Component {
   state = {
@@ -69,6 +72,7 @@ class App extends React.Component {
         });
       }
     );
+    // this.props.history.push(`/`);
   };
 
   authenticate = (user) => {
@@ -84,7 +88,6 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <Navbar handleLogout={this.handleLogout} user={this.state.user} />
         <Switch>
           <NormalRoute exact path={PATHS.HOMEPAGE} component={HomePage} />
           <NormalRoute
@@ -99,23 +102,39 @@ class App extends React.Component {
             authenticate={this.authenticate}
             component={LogIn}
           />
+          <NormalRoute
+            exact
+            path={"/:table/order"}
+            authenticate={this.authenticate}
+            component={OrderPage}
+          />
+          <NormalRoute
+            exact
+            path={"/:table"}
+            authenticate={this.authenticate}
+            component={MenuPage}
+          />
+
           <ProtectedRoute
             exact
             path={PATHS.VIEWALLORDERS}
             component={ViewAllOrders}
             user={this.state.user}
+            handleLogout={this.handleLogout}
           />
           <ProtectedRoute
             exact
             path={PATHS.CREATEMENU}
             component={CreateMenu}
             user={this.state.user}
+            handleLogout={this.handleLogout}
           />
           <ProtectedRoute
             exact
             path={PATHS.CREATEDISH}
             component={CreateDish}
             user={this.state.user}
+            handleLogout={this.handleLogout}
           />
         </Switch>
       </div>

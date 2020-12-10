@@ -1,0 +1,10 @@
+.admin-navbar {
+  color: black;
+  display: flex;
+  background-color: orange;
+  justify-content: space-around;
+}
+
+.admin-navbar a {
+  color: black;
+}

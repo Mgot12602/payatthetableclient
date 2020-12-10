@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import * as PATHS from "../../utils/paths";
+
 
 const Navbar = props => {
   return (
@@ -12,15 +14,15 @@ const Navbar = props => {
       <div className="nav__authLinks">
         {props.user ? (
           <>
-            <Link to="/protected" className="authLink">
+            <Link to={PATHS.VIEWALLORDERS} className="authLink">
               View All Orders
             </Link>
             
-            <Link to="/protected" className="authLink">
+            <Link to={PATHS.CREATEMENU} className="authLink">
               Edit your menu
             </Link>
             
-            <Link to="/protected" className="authLink">
+            <Link to={PATHS.CREATEDISH} className="authLink">
               Create new dish
             </Link>
             <button className="nav-logoutbtn" onClick={props.handleLogout}>
