@@ -10,6 +10,9 @@ import NormalRoute from "./routing-components/NormalRoute";
 import ProtectedRoute from "./routing-components/ProtectedRoute";
 import { getLoggedIn, logout } from "./services/auth";
 import * as PATHS from "./utils/paths";
+import ViewAllOrders from "./pages/admin/ViewAllOrders";
+import CreateMenu from "./pages/admin/CreateMenu";
+import CreateDish from "./pages/admin/CreateDish";
 
 class App extends React.Component {
   state = {
@@ -98,8 +101,20 @@ class App extends React.Component {
           />
           <ProtectedRoute
             exact
-            path={PATHS.PROTECTEDPAGE}
-            component={ProtectedPage}
+            path={PATHS.VIEWALLORDERS}
+            component={ViewAllOrders}
+            user={this.state.user}
+          />
+          <ProtectedRoute
+            exact
+            path={PATHS.CREATEMENU}
+            component={CreateMenu}
+            user={this.state.user}
+          />
+          <ProtectedRoute
+            exact
+            path={PATHS.CREATEDISH}
+            component={CreateDish}
             user={this.state.user}
           />
         </Switch>

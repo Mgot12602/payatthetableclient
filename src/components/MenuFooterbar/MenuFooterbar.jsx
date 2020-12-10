@@ -1,0 +1,1 @@
+<h1>This is the component of Menu Footer</h1>

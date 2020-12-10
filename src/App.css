@@ -27,7 +27,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  background-image: url("https://p0.pikist.com/photos/1000/690/water-chicken-mattheiser-pond-trier-animal-bird.jpg");
+  /* background-image: url("qr.jpg"); */ /*Need to ask about it*/
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -53,7 +53,6 @@
 }
 .option-box h2 {
   margin: 5px;
-  color: white;
 }
 .option-box input {
   width: 30px;

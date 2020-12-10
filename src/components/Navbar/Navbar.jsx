@@ -13,7 +13,15 @@ const Navbar = props => {
         {props.user ? (
           <>
             <Link to="/protected" className="authLink">
-              Protected Page
+              View All Orders
+            </Link>
+            
+            <Link to="/protected" className="authLink">
+              Edit your menu
+            </Link>
+            
+            <Link to="/protected" className="authLink">
+              Create new dish
             </Link>
             <button className="nav-logoutbtn" onClick={props.handleLogout}>
               Logout

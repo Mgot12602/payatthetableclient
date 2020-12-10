@@ -4,7 +4,7 @@ import "../App.css";
 function HomePage() {
   return (
     <div className="main-container">
-      <h1>Restaurant "La polla de l'estany"</h1>
+      <h1>Your Restaurant</h1>
       <div className="main-box">
         <div className="option-box">
           <h2>Scan the QR code on your table</h2>
