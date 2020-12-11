@@ -33,3 +33,18 @@ export function addNewDish(dish) {
     })
     .catch(internalServerError);
 }
+
+export function addDishToMenu(dish) {
+  console.log("dish inside addDishToMenu post call: ", dish);
+  return menuService
+    .post("/addDishToMenu", dish)
+    .then((res) => res)
+    .catch(internalServerError);
+}
+
+export function getAllDishes() {
+  return menuService
+    .get("/getAllDishes")
+    .then((res) => res.data)
+    .catch(internalServerError);
+}
