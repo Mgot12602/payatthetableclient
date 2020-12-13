@@ -25,14 +25,15 @@ export default class MenuList extends Component {
     });
   };
 
-  handleOrder = (event) => {
+  handleOrder = (dishId, table) => {
     const dishAndTable = {
-      dish: this.props.dish._id,
-      table: this.props.tableNumber,
+      dishId: dishId,
+      table: table,
     };
-
+    console.log("onclick function was executed");
     addDishToOrder(dishAndTable).then((newAndUpdatedOrder) => {
       console.log("This is the updated order", newAndUpdatedOrder);
+      //   this.setState({ order: newAndUpdatedOrder });
     });
   };
 

@@ -40,7 +40,7 @@ export function addDishToOrder(dishAndTable) {
   return orderService
     .post("/addDishToOrder", dishAndTable)
     .then((res) => {
-      console.log("this is the new order in blank from the server", res.data);
+      console.log("new and updated orderfrom the server", res.data);
       return res.data;
     })
     .catch(internalServerError);
