@@ -12,6 +12,8 @@ export default class CreateDish extends Component {
     format: "",
     picture_url: "",
     stock: "",
+    type: "",
+    price: 0,
   };
 
   handleChange = (event) => {
@@ -32,6 +34,8 @@ export default class CreateDish extends Component {
       format: this.state.format,
       picture_url: this.state.picture_url,
       stock: this.state.stock,
+      type: this.state.type,
+      price: this.state.price,
     };
     addNewDish(dish).then((res) => {
       this.setState({
@@ -93,6 +97,22 @@ export default class CreateDish extends Component {
             name="stock"
             type="text"
             value={this.state.stock}
+            onChange={this.handleChange}
+          />
+          <label htmlFor="type">Type: </label>
+          <input
+            id="type"
+            name="type"
+            type="text"
+            value={this.state.type}
+            onChange={this.handleChange}
+          />
+          <label htmlFor="Price">Price: </label>
+          <input
+            id="price"
+            name="price"
+            type="text"
+            value={this.state.price}
             onChange={this.handleChange}
           />
           <button type="submit">Add to your menu</button>

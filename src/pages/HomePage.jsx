@@ -1,16 +1,18 @@
 import logo from "../logo.svg";
 import "../App.css";
 import Navbar from "../components/Navbar/Navbar";
+import { addNewOrder } from "../services/order";
 
 import React, { Component } from "react";
 
 export default class HomePage extends Component {
   state = {
-    tableNumber: "",
+    tableNumber: 0,
   };
 
   handleChange = (event) => {
     console.log(event.target.name, ": ", event.target.value);
+
     this.setState({
       tableNumber: event.target.value,
     });
@@ -18,13 +20,20 @@ export default class HomePage extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    const table = { table: this.state.tableNumber };
+    addNewOrder(table)
+      .then((order) => {
+        console.log("this is the created order", order);
+      })
+      .then(() => {
+        // addNewOrder(this.state.table).then((res) => {
+        //   this.setState({
+        //     tables: [res, ...this.state.tables],
+        //   });
+        // });
 
-    // addNewOrder(this.state.table).then((res) => {
-    //   this.setState({
-    //     tables: [res, ...this.state.tables],
-    //   });
-    // });
-    this.props.history.push(`/${this.state.tableNumber}`);
+        this.props.history.push(`/${this.state.tableNumber}`);
+      });
   };
 
   render() {

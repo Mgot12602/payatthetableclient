@@ -1,7 +1,7 @@
 import AdminNavbar from "../../components/AdminNavbar/AdminNavbar";
 
 import React, { Component } from "react";
-import { getAllDishes, addDishToMenu } from "../../services/menu";
+import { getAllDishes, addDishToMenu, getMenu } from "../../services/menu";
 import { findDOMNode } from "react-dom";
 export default class CreateMenu extends Component {
   state = {
@@ -9,13 +9,18 @@ export default class CreateMenu extends Component {
     selectedDishName: "",
     menu: [],
     user: "",
+    isLoading: true,
   };
 
   componentDidMount = () => {
     console.log("what is the data in this.props.user?", this.props.user);
     getAllDishes().then((responseBack) => {
-      // console.log("responseBack:", responseBack);
+      console.log("responseBack:", responseBack);
       this.setState({ dishes: responseBack, user: this.props.user });
+    });
+    getMenu().then((responseback) => {
+      console.log("get menu in line 22 CreateMenu.jsx", this.state.menu);
+      this.setState({ menu: responseback, isLoading: false });
     });
   };
   handleSubmit = (event) => {
@@ -23,9 +28,9 @@ export default class CreateMenu extends Component {
 
     console.log("this.state.selectedDishName", this.state.selectedDishName);
     const filteredDish = this.state.dishes.filter((el) => {
-      console.log(
-        `el.name: ${el.name} and this.state.selectedDishName: ${this.state.selectedDishName}`
-      );
+      //   console.log(
+      //     `el.name: ${el.name} and this.state.selectedDishName: ${this.state.selectedDishName}`
+      //   );
       return el.name === this.state.selectedDishName;
     });
     console.log("what is filtered dish:", filteredDish);
@@ -35,11 +40,8 @@ export default class CreateMenu extends Component {
     };
 
     addDishToMenu(filteredDishAndUser).then((res) => {
-      //should return the dishID
-
-      console.log("added dish to menu", this.state.selectedDishName);
       this.setState({
-        menu: [...this.state.menu, filteredDish], //should be the menu ID
+        menu: res,
       });
     });
   };
@@ -53,8 +55,17 @@ export default class CreateMenu extends Component {
 
   render() {
     const allDishes = this.state.dishes;
+    if (this.state.isLoading) {
+      console.log("this.state.isLoading before return", this.state.isLoading);
+      return <div>Loading ...</div>;
+    }
+
     return (
       <div>
+        {console.log(
+          "this.state.isLoading inside return",
+          this.state.isLoading
+        )}
         <AdminNavbar
           handleLogout={this.props.handleLogout}
           onChange={this.handleChange}
@@ -77,9 +88,10 @@ export default class CreateMenu extends Component {
         </form>
         <h1>Current Menu</h1>
         {console.log("this.state.menu", this.state.menu)}
-        {/* {this.menu.name.map((el) => (
+
+        {this.state.menu[0].dishes.map((el) => (
           <div>{el.name}</div>
-        ))} */}
+        ))}
       </div>
     );
   }
