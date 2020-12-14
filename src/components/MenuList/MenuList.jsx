@@ -4,25 +4,28 @@ import { getMenu } from "../../services/menu";
 import MenuFooterbar from "./../../components/MenuFooterbar/MenuFooterbar";
 import OrderPage from "../../pages/Customer/OrderPage";
 import { addDishToOrder, getOrder } from "../../services/order";
+import { Link } from "react-router-dom";
 
 export default class MenuList extends Component {
   state = {
-    isLoading1: true,
-    isLoading2: true,
+    isLoading: true,
+    // isLoading2: true,
     menu: [],
-    order: "",
+    order: null,
+    price: 0,
   };
   componentDidMount = () => {
-    console.log("component did mount in MenuLIst");
-    getMenu().then((responseback) => {
-      console.log("get menu in Menu List.jsx", this.state.menu);
-      this.setState({ menu: responseback, isLoading1: false });
-    });
-    console.log("about to execcute getOrder in MenuList");
-    getOrder({ table: this.props.tableNumber }).then((receivedOrder) => {
-      console.log("this is the received order", receivedOrder);
-      this.setState({ order: receivedOrder, isLoading2: false });
-    });
+    Promise.all([getMenu(), getOrder({ table: this.props.tableNumber })]).then(
+      (responsesBack) => {
+        console.log("LOOK HERE MARC", responsesBack);
+
+        this.setState({
+          menu: responsesBack[0],
+          order: responsesBack[1],
+          isLoading: false,
+        });
+      }
+    );
   };
 
   handleOrder = (dishId, table) => {
@@ -30,18 +33,29 @@ export default class MenuList extends Component {
       dishId: dishId,
       table: table,
     };
+
     console.log("onclick function was executed");
+
     addDishToOrder(dishAndTable).then((newAndUpdatedOrder) => {
       console.log("This is the updated order", newAndUpdatedOrder);
-      //   this.setState({ order: newAndUpdatedOrder });
+      let price = newAndUpdatedOrder.dishesOrdered.reduce((acc, el) => {
+        console.log(
+          `el.dishType.price : ${el.dishType.price} and el.units: ${el.units}=>acc:${acc} `
+        );
+        return acc + el.dishType.price * el.units;
+      }, 0);
+      console.log("price", price);
+
+      this.setState({ order: newAndUpdatedOrder, price: price });
     });
   };
 
   render() {
-    if (this.state.isLoading1) {
+    if (this.state.isLoading) {
       console.log("this.state.isLoading before return", this.state.isLoading1);
       return <div>Loading ...</div>;
     }
+    console.log("order", this.state.order);
     return (
       <div>
         {this.state.menu[0].dishes.map((el) => (
@@ -54,11 +68,27 @@ export default class MenuList extends Component {
             />
           </div>
         ))}
-        <MenuFooterbar
+        <div>
+          {(this.state.order && (
+            <nav className="nav-MenuFooterbar">
+              {" "}
+              <h1>
+                Items selected: {this.state.order.totalItems || "0"} Total:{" "}
+                {this.state.price} €{" "}
+              </h1>{" "}
+              <button>
+                <Link to={`/${this.props.tableNumber}/order`}>
+                  Finish your Order
+                </Link>
+              </button>{" "}
+            </nav>
+          )) || <p>Loading...</p>}
+        </div>
+        {/* <MenuFooterbar
           tableNumber={this.props.tableNumber}
-          order={this.state.order}
-          isLoading2={this.state.isLoading2}
-        />
+          order={this.state.order[0]}
+          isLoading={this.state.isLoading}
+        /> */}
       </div>
     );
   }
