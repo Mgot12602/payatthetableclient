@@ -3,7 +3,7 @@ import MenuNavbar from "../../components/MenuNavbar/MenuNavbar";
 import TableOrder from "../../components/TableOrder/TableOrder";
 import Payment from "../../components/Payment/Payment";
 import { getMenu } from "../../services/menu";
-import { addDishToOrder, getOrder } from "../../services/order";
+import { addDishToOrder, getOrder, getTotal } from "../../services/order";
 
 export default class OrderPage extends Component {
   state = {
@@ -11,6 +11,7 @@ export default class OrderPage extends Component {
     // isLoading2: true,
     menu: [],
     order: null,
+    total: 0,
   };
   componentDidMount = () => {
     Promise.all([
@@ -24,6 +25,13 @@ export default class OrderPage extends Component {
         order: responsesBack[1],
         isLoading: false,
       });
+    });
+  };
+
+  handleClick = () => {
+    getTotal({ table: this.props.match.params.table }).then((total) => {
+      console.log("getTotal", total);
+      this.setState({ total: total });
     });
   };
 
@@ -42,6 +50,7 @@ export default class OrderPage extends Component {
           order={this.state.order[0]}
           isLoading={this.state.isLoading}
         />
+        <button onClick={this.handleClick}>Pay</button>
         <Payment />
       </div>
     );

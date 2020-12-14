@@ -54,3 +54,13 @@ export function getOrder(tableNumber) {
     })
     .catch(internalServerError);
 }
+
+export function getTotal(table) {
+  return orderService
+    .post("/getTotal", table)
+    .then((res) => {
+      console.log("this is the get total in order service", res.data);
+      return res.data;
+    })
+    .catch(internalServerError);
+}
