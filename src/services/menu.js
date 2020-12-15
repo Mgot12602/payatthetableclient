@@ -45,6 +45,17 @@ export function addDishToMenu(dish) {
     .catch(internalServerError);
 }
 
+export function removeDishFromMenu(dish) {
+  console.log("dish inside addDishToMenu post call: ", dish);
+  return menuService
+    .post("/removeDishFromMenu", dish)
+    .then((res) => {
+      console.log("res.data inside menujs", res.data);
+      return res.data;
+    })
+    .catch(internalServerError);
+}
+
 export function getAllDishes() {
   return menuService
     .get("/getAllDishes")

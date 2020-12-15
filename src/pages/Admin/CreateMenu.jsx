@@ -1,7 +1,12 @@
 import AdminNavbar from "../../components/AdminNavbar/AdminNavbar";
 
 import React, { Component } from "react";
-import { getAllDishes, addDishToMenu, getMenu } from "../../services/menu";
+import {
+  getAllDishes,
+  addDishToMenu,
+  getMenu,
+  removeDishFromMenu,
+} from "../../services/menu";
 import { findDOMNode } from "react-dom";
 export default class CreateMenu extends Component {
   state = {
@@ -23,6 +28,7 @@ export default class CreateMenu extends Component {
       this.setState({ menu: responseback, isLoading: false });
     });
   };
+
   handleSubmit = (event) => {
     event.preventDefault();
 
@@ -40,6 +46,29 @@ export default class CreateMenu extends Component {
     };
 
     addDishToMenu(filteredDishAndUser).then((res) => {
+      this.setState({
+        menu: res,
+      });
+    });
+  };
+
+  handleRemove = (event) => {
+    event.preventDefault();
+
+    console.log("this.state.selectedDishName", this.state.selectedDishName);
+    const filteredDish = this.state.dishes.filter((el) => {
+      //   console.log(
+      //     `el.name: ${el.name} and this.state.selectedDishName: ${this.state.selectedDishName}`
+      //   );
+      return el.name === this.state.selectedDishName;
+    });
+    console.log("what is filtered dish:", filteredDish);
+    const filteredDishAndUser = {
+      filteredDish: filteredDish,
+      user: this.state.user,
+    };
+
+    removeDishFromMenu(filteredDishAndUser).then((res) => {
       this.setState({
         menu: res,
       });
@@ -70,7 +99,7 @@ export default class CreateMenu extends Component {
           handleLogout={this.props.handleLogout}
           onChange={this.handleChange}
         />
-        <h1>This is where you admin edits the menu</h1>
+
         <form onSubmit={this.handleSubmit}>
           <label id="dish">Select the dish to add</label>
           <select
@@ -92,6 +121,21 @@ export default class CreateMenu extends Component {
         {this.state.menu[0].dishes.map((el) => (
           <div>{el.name}</div>
         ))}
+        <form onSubmit={this.handleRemove}>
+          <label id="dish">Select the dish to remove</label>
+          <select
+            name="SelectedDishName"
+            id="dish"
+            value={this.state.selectedDishName}
+            onChange={this.handleChange}
+          >
+            {console.log(this.state.dishes)}
+            {allDishes.map((el) => (
+              <option>{el.name}</option>
+            ))}
+          </select>
+          <button type="submit">Remove</button>
+        </form>
       </div>
     );
   }

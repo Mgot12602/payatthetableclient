@@ -12,6 +12,7 @@ export default class OrderPage extends Component {
     menu: [],
     order: null,
     total: 0,
+    paid: false,
   };
   componentDidMount = () => {
     Promise.all([
@@ -50,7 +51,6 @@ export default class OrderPage extends Component {
           order={this.state.order[0]}
           isLoading={this.state.isLoading}
         />
-        <button onClick={this.handleClick}>Pay</button>
 
         <Payment tableNumber={tableNumber} />
       </div>

@@ -67,6 +67,7 @@ export default function CheckoutForm(props) {
       setError(null);
       setProcessing(false);
       setSucceeded(true);
+      // props.changeToPaid();
     }
   };
   return (
