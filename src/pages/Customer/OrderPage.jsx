@@ -51,7 +51,8 @@ export default class OrderPage extends Component {
           isLoading={this.state.isLoading}
         />
         <button onClick={this.handleClick}>Pay</button>
-        <Payment />
+
+        <Payment tableNumber={tableNumber} />
       </div>
     );
   }
