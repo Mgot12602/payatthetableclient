@@ -1,8 +1,9 @@
-#root {
+.stripe {
   display: flex;
+  flex-direction: column;
   align-items: center;
 }
-body {
+.stripe body {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
@@ -63,7 +64,7 @@ body {
   margin-bottom: 32px;
 }
 /* Buttons and links */
-button {
+.stripe button {
   background: #5469d4;
   font-family: Arial, sans-serif;
   color: #ffffff;

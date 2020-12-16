@@ -9,7 +9,7 @@ import {
   getTotal,
   changeToPaid,
 } from "../../services/order";
-
+import "./OrderPage.css";
 export default class OrderPage extends Component {
   state = {
     isLoading: true,
@@ -57,21 +57,27 @@ export default class OrderPage extends Component {
 
     const tableNumber = this.props.match.params.table;
     return (
-      <div>
+      <div className="orderpage-container">
         {console.log("this.state.order", this.state.order)}
 
         <MenuNavbar tableNumber={tableNumber} />
-
-        <TableOrder
-          order={this.state.order[0]}
-          isLoading={this.state.isLoading}
-        />
-        {this.state.order[0].paid ? <h3>PAID</h3> : <h3>Pending to pay</h3>}
-        {this.state.order[0].paid ? (
-          ""
-        ) : (
-          <Payment tableNumber={tableNumber} changeToPaid={this.changeToPaid} />
-        )}
+        <div>
+          <TableOrder
+            order={this.state.order[0]}
+            isLoading={this.state.isLoading}
+          />
+        </div>
+        <div>
+          {this.state.order[0].paid ? <h3>PAID</h3> : <h3>Pending to pay</h3>}
+          {this.state.order[0].paid ? (
+            ""
+          ) : (
+            <Payment
+              tableNumber={tableNumber}
+              changeToPaid={this.changeToPaid}
+            />
+          )}
+        </div>
       </div>
     );
   }

@@ -42,27 +42,28 @@ export default class HomePage extends Component {
         <Navbar handleLogout={this.handleLogout} user={this.state.user} />
         <div
           className="main-container"
-          style={{ backgroundImage: `url(/images/qr.jpg)` }}
+          style={{ backgroundImage: `url(/images/coolrestaurant.jpg)` }}
         >
-          <h1>Your favorite Restaurant</h1>
+          <h1>The Iron Restaurant</h1>
           <div className="main-box">
             <div className="option-box">
               <h2>Scan the QR code on your table</h2>
             </div>
-            <div>Or</div>
+            <div></div>
             <div className="option-box">
-              
               <form onSubmit={this.handleSubmit}>
-               <label id="table-number">
-              <h3>  Enter your table Number:</h3>
-              </label>
+                <label id="table-number">
+                  <h3> Enter your table Number:</h3>
+                </label>
                 <input
                   name="tableNumber"
                   type="number"
                   value={this.state.tableNumber}
                   onChange={this.handleChange}
                 />
-                <button type="submit">Enter</button>
+                <button class="button" type="submit">
+                  Enter
+                </button>
               </form>
             </div>
           </div>

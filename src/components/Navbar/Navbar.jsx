@@ -1,12 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './Navbar.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./Navbar.css";
 import * as PATHS from "../../utils/paths";
 
-
-const Navbar = props => {
+const Navbar = (props) => {
   return (
-    <nav>
+    <nav className="homepage">
       <Link to="/" className="nav__projectName">
         Pay at the table App
       </Link>
@@ -17,11 +16,11 @@ const Navbar = props => {
             <Link to={PATHS.VIEWALLORDERS} className="authLink">
               View All Orders
             </Link>
-            
+
             <Link to={PATHS.CREATEMENU} className="authLink">
               Edit your menu
             </Link>
-            
+
             <Link to={PATHS.CREATEDISH} className="authLink">
               Create new dish
             </Link>
@@ -30,8 +29,8 @@ const Navbar = props => {
             </button>
           </>
         ) : (
-            <>
-              <h4>Admin Access</h4>
+          <>
+            <h4>Admin Access</h4>
             <Link to="/auth/signup" className="authLink">
               Join?
             </Link>

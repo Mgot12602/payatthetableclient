@@ -24,6 +24,7 @@ export default class Dish extends Component {
           <p>{this.props.dish.price} €</p>
 
           <button
+            className="dish-button"
             onClick={() =>
               this.props.handleOrder(
                 this.props.dish._id,

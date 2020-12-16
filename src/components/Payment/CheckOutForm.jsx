@@ -71,13 +71,17 @@ export default function CheckoutForm(props) {
     }
   };
   return (
-    <form id="payment-form" onSubmit={handleSubmit}>
+    <form className="stripe" id="payment-form" onSubmit={handleSubmit}>
       <CardElement
         id="card-element"
         options={cardStyle}
         onChange={handleChange}
       />
-      <button disabled={processing || disabled || succeeded} id="submit">
+      <button
+        className="stripe"
+        disabled={processing || disabled || succeeded}
+        id="submit"
+      >
         <span id="button-text">
           {processing ? <div className="spinner" id="spinner"></div> : "Pay"}
         </span>

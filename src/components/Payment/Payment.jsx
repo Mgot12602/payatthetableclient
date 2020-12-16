@@ -15,7 +15,7 @@ const promise = loadStripe(
 export default function App(props) {
   console.log("props.tableNumber in Payment", props.tableNumber);
   return (
-    <div className="App">
+    <div className="stripe">
       <Elements stripe={promise}>
         <CheckoutForm
           tableNumber={props.tableNumber}

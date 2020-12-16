@@ -22,4 +22,19 @@
 
 .dish-pricebox {
   margin: 30px;
+  display: flex;
+  width: 300px;
+  justify-content: space-around;
+}
+
+.dish-button {
+  width: 80px;
+  height: 50px;
+  font-size: 20px;
+  display: block;
+  background-color: #61dafb;
+  border-radius: 25px;
+  box-shadow: 2px 2px 1px rgb(25, 106, 138);
+  border: none;
+  color: black;
 }

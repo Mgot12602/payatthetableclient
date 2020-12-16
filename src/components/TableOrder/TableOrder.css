@@ -1,8 +1,15 @@
 .table-order-container {
   margin: 50px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 .dishtype-box {
   display: flex;
+  text-align: center;
+  width: 100%;
+  justify-content: center;
+  border: 1px solid black;
 }
 .dishtype-box h3,
 h2 {

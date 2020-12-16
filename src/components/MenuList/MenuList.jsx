@@ -5,6 +5,8 @@ import MenuFooterbar from "./../../components/MenuFooterbar/MenuFooterbar";
 import OrderPage from "../../pages/Customer/OrderPage";
 import { addDishToOrder, getOrder } from "../../services/order";
 import { Link } from "react-router-dom";
+import "./MenuList.css";
+import "./../MenuFooterbar/MenuFooterbar.css";
 
 export default class MenuList extends Component {
   state = {
@@ -18,25 +20,22 @@ export default class MenuList extends Component {
     Promise.all([getMenu(), getOrder({ table: this.props.tableNumber })]).then(
       (responsesBack) => {
         console.log("LOOK HERE MARC", responsesBack[1][0]);
-    let price=0;
-    if(responsesBack[1][0].dishesOrdered){
-      price = responsesBack[1][0].dishesOrdered.reduce((acc, el) => {
-        // console.log(
-        //   `el.dishType.price : ${el.dishType.price} and el.units: ${el.units}=>acc:${acc} `
-        // );
-        return acc + el.dishType.price * el.units;
-      }, 0);
-      console.log("price", price);
-
-}
-
-
+        let price = 0;
+        if (responsesBack[1][0].dishesOrdered) {
+          price = responsesBack[1][0].dishesOrdered.reduce((acc, el) => {
+            // console.log(
+            //   `el.dishType.price : ${el.dishType.price} and el.units: ${el.units}=>acc:${acc} `
+            // );
+            return acc + el.dishType.price * el.units;
+          }, 0);
+          console.log("price", price);
+        }
 
         this.setState({
           menu: responsesBack[0],
           order: responsesBack[1][0],
           isLoading: false,
-          price:price
+          price: price,
         });
       }
     );
@@ -72,6 +71,7 @@ export default class MenuList extends Component {
     console.log("order", this.state.order);
     return (
       <div>
+        <div className="margin"></div>
         {this.state.menu[0].dishes.map((el) => (
           <div>
             <Dish
@@ -90,7 +90,7 @@ export default class MenuList extends Component {
                 Items selected: {this.state.order.totalItems || "0"} Total:{" "}
                 {this.state.price} €{" "}
               </h1>{" "}
-              <button>
+              <button class="button">
                 <Link to={`/${this.props.tableNumber}/order`}>
                   Finish your Order
                 </Link>
@@ -103,6 +103,7 @@ export default class MenuList extends Component {
           order={this.state.order[0]}
           isLoading={this.state.isLoading}
         /> */}
+        <div className="margin-bottom"></div>
       </div>
     );
   }

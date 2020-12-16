@@ -1,9 +1,23 @@
 .menu-nav-bar {
-   background: #282c34;
-   color:white;
-   text-decoration:none;
-   display:flex;
-  
+  display: flex;
+  padding: 1em;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background-color: grey;
+  font-weight: 600;
+  color: white;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  height: 70px;
 }
-a {text-decoration:none;
-color:white}
+a {
+  text-decoration: none;
+  color: #61dafb;
+  font-size: 30px;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
