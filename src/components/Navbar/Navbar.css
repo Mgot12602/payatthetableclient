@@ -5,11 +5,13 @@ nav {
   flex-wrap: wrap;
   background: #282c34;
   font-weight: 600;
+  
 }
 
 .nav__projectName {
   color: #e4f9ff;
   text-decoration: none;
+  
 }
 
 .authLink {
@@ -23,7 +25,7 @@ nav {
 }
 
 .authLink:hover {
-  color: #ffffff;
+  color: white;
 }
 
 .nav-logoutbtn {

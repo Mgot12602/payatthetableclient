@@ -42,15 +42,15 @@ export default class MenuFooterbar extends Component {
       <div>
         {(this.state.order && (
           <nav className="nav-MenuFooterbar">
-            //{" "}
+            {" "}
             <h1>
-              // // Items selected: // {this.state.order.totalItems} Total: //{" "}
+             Items selected: // {this.state.order.totalItems} Total: {" "}
               {this.state.price} €{console.log(this.props.order)}
-              //{" "}
+              {" "}
             </h1>
-            //{" "}
+            {" "}
             {/* <Link to={`/${props.tableNumber}/order`}>Finish your Order</Link> */}
-            //{" "}
+            {" "}
           </nav>
         )) || <p>Loading...</p>}
       </div>

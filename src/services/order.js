@@ -64,3 +64,13 @@ export function getTotal(table) {
     })
     .catch(internalServerError);
 }
+
+export function changeToPaid(table) {
+  return orderService
+    .post("/changeToPaid", table)
+    .then((res) => {
+      console.log("new and updated orderfrom the server", res.data);
+      return res.data;
+    })
+    .catch(internalServerError);
+}

@@ -17,7 +17,10 @@ export default function App(props) {
   return (
     <div className="App">
       <Elements stripe={promise}>
-        <CheckoutForm tableNumber={props.tableNumber} />
+        <CheckoutForm
+          tableNumber={props.tableNumber}
+          changeToPaid={props.changeToPaid}
+        />
       </Elements>
     </div>
   );

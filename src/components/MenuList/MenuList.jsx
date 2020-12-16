@@ -17,12 +17,26 @@ export default class MenuList extends Component {
   componentDidMount = () => {
     Promise.all([getMenu(), getOrder({ table: this.props.tableNumber })]).then(
       (responsesBack) => {
-        console.log("LOOK HERE MARC", responsesBack);
+        console.log("LOOK HERE MARC", responsesBack[1][0]);
+    let price=0;
+    if(responsesBack[1][0].dishesOrdered){
+      price = responsesBack[1][0].dishesOrdered.reduce((acc, el) => {
+        // console.log(
+        //   `el.dishType.price : ${el.dishType.price} and el.units: ${el.units}=>acc:${acc} `
+        // );
+        return acc + el.dishType.price * el.units;
+      }, 0);
+      console.log("price", price);
+
+}
+
+
 
         this.setState({
           menu: responsesBack[0],
-          order: responsesBack[1],
+          order: responsesBack[1][0],
           isLoading: false,
+          price:price
         });
       }
     );

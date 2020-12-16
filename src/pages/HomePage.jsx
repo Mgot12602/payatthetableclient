@@ -51,10 +51,11 @@ export default class HomePage extends Component {
             </div>
             <div>Or</div>
             <div className="option-box">
-              <label id="table-number">
-                <h2>Enter your table Number:</h2>
-              </label>
+              
               <form onSubmit={this.handleSubmit}>
+               <label id="table-number">
+              <h3>  Enter your table Number:</h3>
+              </label>
                 <input
                   name="tableNumber"
                   type="number"

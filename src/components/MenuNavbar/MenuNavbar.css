@@ -1,3 +1,9 @@
 .menu-nav-bar {
-  background-color: goldenrod;
+   background: #282c34;
+   color:white;
+   text-decoration:none;
+   display:flex;
+  
 }
+a {text-decoration:none;
+color:white}

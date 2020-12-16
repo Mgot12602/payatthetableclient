@@ -59,6 +59,9 @@
   margin: 5px;
 }
 .option-box input {
-  width: 30px;
+  width: 70px;
   margin: 10px 20px;
+}
+.button{
+  width:100px;
 }
