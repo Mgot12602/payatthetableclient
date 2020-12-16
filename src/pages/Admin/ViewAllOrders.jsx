@@ -1,15 +1,60 @@
 import AdminNavbar from "../../components/AdminNavbar/AdminNavbar";
 import React, { Component } from "react";
+import { getAllOrders, clearTable } from "../../services/order";
+import "./Admin.css";
 
 export default class ViewAllOrders extends Component {
-  // getallOrders().then((Orders)=> {
+  state = {
+    orders: null,
+  };
 
-  // })
+  componentDidMount = () => {
+    getAllOrders().then((orders) => {
+      console.log("Look here Marc", orders);
+      this.setState({ orders: orders });
+    });
+  };
+
+  handleClear = (table) => {
+    clearTable({ table: table }).then((orders) => {
+      console.log("received orders after clearing", orders);
+      getAllOrders().then((orders) => {
+        console.log("Look here Marc2", orders);
+        this.setState({ orders: orders });
+      });
+      // this.setState({ orders: orders });
+    });
+  };
 
   render() {
+    if (!this.state.orders) {
+      console.log("this.state.isLoading before return", this.state.orders);
+      return <div>NO ORDERS ...</div>;
+    }
     return (
       <div>
         <AdminNavbar handleLogout={this.props.handleLogout} />
+
+        {this.state.orders.map((el, index) => (
+          <div className="allOrders-container">
+            <h2>table: {el.table}</h2>
+
+            {el.dishesOrdered.map((val) => (
+              <div>
+                <tr>
+                  <td>{val.units}</td>
+                  <td>
+                    {""}
+                    {val.dishType.name}
+                  </td>
+                </tr>
+              </div>
+            ))}
+            <button onClick={() => this.handleClear(el.table)}>
+              Clear order
+            </button>
+          </div>
+        ))}
 
         {/* <table>
             <tr>

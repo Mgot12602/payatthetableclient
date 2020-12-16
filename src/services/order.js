@@ -74,3 +74,23 @@ export function changeToPaid(table) {
     })
     .catch(internalServerError);
 }
+
+export function getAllOrders() {
+  return orderService
+    .get("/getAllOrders")
+    .then((res) => {
+      console.log("get al orders", res.data);
+      return res.data;
+    })
+    .catch(internalServerError);
+}
+
+export function clearTable(table) {
+  return orderService
+    .post("/clearTable", table)
+    .then((res) => {
+      console.log("response in order.js for clear table", res.data);
+      return res.data;
+    })
+    .catch(internalServerError);
+}
