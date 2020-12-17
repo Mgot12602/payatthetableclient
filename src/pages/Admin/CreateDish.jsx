@@ -115,7 +115,9 @@ export default class CreateDish extends Component {
             value={this.state.price}
             onChange={this.handleChange}
           />
-          <button type="submit">Add to your menu</button>
+          <button id="button-createdish" type="submit">
+            Add to your menu
+          </button>
         </form>
       </div>
     );

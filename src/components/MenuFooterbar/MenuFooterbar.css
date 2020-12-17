@@ -26,6 +26,11 @@
   border: none;
   color: black;
 }
+
 .nav-MenuFooterbar a {
   color: green;
+}
+
+.nav-MenuFooterbar a:hover {
+  color: white;
 }

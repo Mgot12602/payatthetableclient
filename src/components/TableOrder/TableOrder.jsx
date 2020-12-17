@@ -58,16 +58,20 @@ export default class TableOrder extends Component {
                   <h3> = {el.dishType.price * el.units} €</h3>
                 </td>
                 <td>
-                  <button
-                    onClick={() =>
-                      this.props.handleRemoveDish(
-                        this.props.order,
-                        el.dishType._id
-                      )
-                    }
-                  >
-                    Remove
-                  </button>
+                  {!this.props.order.paid ? (
+                    <button
+                      onClick={() =>
+                        this.props.handleRemoveDish(
+                          this.props.order,
+                          el.dishType._id
+                        )
+                      }
+                    >
+                      Remove
+                    </button>
+                  ) : (
+                    <p></p>
+                  )}
                 </td>
               </tr>
             ))}

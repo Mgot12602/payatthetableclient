@@ -1,4 +1,5 @@
 import AdminNavbar from "../../components/AdminNavbar/AdminNavbar";
+import "./Admin.css";
 
 import React, { Component } from "react";
 import {
@@ -99,43 +100,50 @@ export default class CreateMenu extends Component {
           handleLogout={this.props.handleLogout}
           onChange={this.handleChange}
         />
+        <div className="createMenuContainer">
+          <form onSubmit={this.handleSubmit}>
+            <label id="dish">Select the dish to add:</label>
+            <select
+              name="SelectedDishName"
+              id="dish"
+              value={this.state.selectedDishName}
+              onChange={this.handleChange}
+            >
+              {console.log(this.state.dishes)}
+              {allDishes.map((el) => (
+                <option>{el.name}</option>
+              ))}
+            </select>
+            <button id="green" type="submit">
+              Add to menu
+            </button>
+          </form>
+          <div className="createMenuContainer">
+            <h1>Current Menu</h1>
+            {console.log("this.state.menu", this.state.menu)}
 
-        <form onSubmit={this.handleSubmit}>
-          <label id="dish">Select the dish to add</label>
-          <select
-            name="SelectedDishName"
-            id="dish"
-            value={this.state.selectedDishName}
-            onChange={this.handleChange}
-          >
-            {console.log(this.state.dishes)}
-            {allDishes.map((el) => (
-              <option>{el.name}</option>
+            {this.state.menu[0].dishes.map((el) => (
+              <div>{el.name}</div>
             ))}
-          </select>
-          <button type="submit">Add to menu</button>
-        </form>
-        <h1>Current Menu</h1>
-        {console.log("this.state.menu", this.state.menu)}
-
-        {this.state.menu[0].dishes.map((el) => (
-          <div>{el.name}</div>
-        ))}
-        <form onSubmit={this.handleRemove}>
-          <label id="dish">Select the dish to remove</label>
-          <select
-            name="SelectedDishName"
-            id="dish"
-            value={this.state.selectedDishName}
-            onChange={this.handleChange}
-          >
-            {console.log(this.state.dishes)}
-            {allDishes.map((el) => (
-              <option>{el.name}</option>
-            ))}
-          </select>
-          <button type="submit">Remove</button>
-        </form>
+          </div>
+          <form onSubmit={this.handleRemove}>
+            <label id="dish">Select the dish to remove:</label>
+            <select
+              name="SelectedDishName"
+              id="dish"
+              value={this.state.selectedDishName}
+              onChange={this.handleChange}
+            >
+              {console.log(this.state.dishes)}
+              {allDishes.map((el) => (
+                <option>{el.name}</option>
+              ))}
+            </select>
+            <button id="red" type="submit">
+              Remove
+            </button>
+          </form>
+        </div>
       </div>
     );
   }

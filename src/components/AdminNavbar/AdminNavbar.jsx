@@ -7,17 +7,11 @@ export default function AdminNavbar(props) {
   return (
     <div>
       <nav className="admin-navbar">
-        <Link to={PATHS.VIEWALLORDERS} className="authLink">
-          View All Orders
-        </Link>
+        <Link to={PATHS.VIEWALLORDERS}>View All Orders</Link>
 
-        <Link to={PATHS.CREATEMENU} className="authLink">
-          Edit your menu
-        </Link>
+        <Link to={PATHS.CREATEMENU}>Edit your menu</Link>
 
-        <Link to={PATHS.CREATEDISH} className="authLink">
-          Create new dish
-        </Link>
+        <Link to={PATHS.CREATEDISH}>Create new dish</Link>
 
         <button onClick={props.handleLogout}>Logout</button>
       </nav>

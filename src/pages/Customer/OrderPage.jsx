@@ -85,7 +85,13 @@ export default class OrderPage extends Component {
           />
         </div>
         <div>
-          {this.state.order.paid ? <h3>PAID</h3> : <h3>Pending to pay</h3>}
+          {this.state.order.paid ? (
+            <h3 id="green">
+              Thank you! Your dish is being prepared and soon we will serve you.{" "}
+            </h3>
+          ) : (
+            <h3 id="red">Pending to pay</h3>
+          )}
           {this.state.order.paid ? (
             ""
           ) : (

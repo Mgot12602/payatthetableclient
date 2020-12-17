@@ -34,29 +34,29 @@ export default class ViewAllOrders extends Component {
     return (
       <div>
         <AdminNavbar handleLogout={this.props.handleLogout} />
+        <div className="viewallorders-container">
+          {this.state.orders.map((el, index) => (
+            <div className="allOrders-container">
+              <h2>table: {el.table}</h2>
 
-        {this.state.orders.map((el, index) => (
-          <div className="allOrders-container">
-            <h2>table: {el.table}</h2>
+              {el.dishesOrdered.map((val) => (
+                <div>
+                  <tr>
+                    <td>{val.units}</td>
+                    <td>
+                      {"  "}
+                      &nbsp;&nbsp; {val.dishType.name}
+                    </td>
+                  </tr>
+                </div>
+              ))}
+              <button onClick={() => this.handleClear(el.table)}>
+                Clear order
+              </button>
+            </div>
+          ))}
 
-            {el.dishesOrdered.map((val) => (
-              <div>
-                <tr>
-                  <td>{val.units}</td>
-                  <td>
-                    {""}
-                    {val.dishType.name}
-                  </td>
-                </tr>
-              </div>
-            ))}
-            <button onClick={() => this.handleClear(el.table)}>
-              Clear order
-            </button>
-          </div>
-        ))}
-
-        {/* <table>
+          {/* <table>
             <tr>
               <th>
                 <h2>Item</h2>
@@ -79,6 +79,7 @@ export default class ViewAllOrders extends Component {
               </tr>
             ))}
           </table> */}
+        </div>
       </div>
     );
   }
