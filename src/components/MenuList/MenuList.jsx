@@ -15,6 +15,7 @@ export default class MenuList extends Component {
     menu: [],
     order: null,
     price: 0,
+    totalItems: 0,
   };
   componentDidMount = () => {
     Promise.all([getMenu(), getOrder({ table: this.props.tableNumber })]).then(
@@ -31,11 +32,18 @@ export default class MenuList extends Component {
           console.log("price", price);
         }
 
+        let units = responsesBack[1][0].dishesOrdered.reduce((acc, el) => {
+          return acc + el.units;
+        }, 0);
+
+        console.log("units", units);
+
         this.setState({
           menu: responsesBack[0],
           order: responsesBack[1][0],
           isLoading: false,
           price: price,
+          totalItems: units,
         });
       }
     );
@@ -59,7 +67,16 @@ export default class MenuList extends Component {
       }, 0);
       console.log("price", price);
 
-      this.setState({ order: newAndUpdatedOrder, price: price });
+      let units = newAndUpdatedOrder.dishesOrdered.reduce((acc, el) => {
+        return acc + el.units;
+      }, 0);
+
+      console.log("units", units);
+      this.setState({
+        order: newAndUpdatedOrder,
+        price: price,
+        totalItems: units,
+      });
     });
   };
 
@@ -87,8 +104,9 @@ export default class MenuList extends Component {
             <nav className="nav-MenuFooterbar">
               {" "}
               <h1>
-                Items selected: {this.state.order.totalItems || "0"} Total:{" "}
-                {this.state.price} €{" "}
+                Items selected:{" "}
+                {/*this.state.order.totalItems*/ this.state.totalItems || "0"}{" "}
+                Total: {this.state.price} €{" "}
               </h1>{" "}
               <button class="button">
                 <Link to={`/${this.props.tableNumber}/order`}>

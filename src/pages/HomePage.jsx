@@ -61,7 +61,7 @@ export default class HomePage extends Component {
                   value={this.state.tableNumber}
                   onChange={this.handleChange}
                 />
-                <button class="button" type="submit">
+                <button class="home-button" type="submit">
                   Enter
                 </button>
               </form>
