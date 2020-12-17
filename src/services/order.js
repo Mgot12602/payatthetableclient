@@ -94,3 +94,12 @@ export function clearTable(table) {
     })
     .catch(internalServerError);
 }
+export function removeDishFromOrder(orderIdAndDish) {
+  return orderService
+    .post("/removeDishFromOrder", orderIdAndDish)
+    .then((res) => {
+      console.log("response in order.js remove dish", res.data);
+      return res.data;
+    })
+    .catch(internalServerError);
+}

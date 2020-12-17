@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./TableOrder.css";
+import { removeDishFromOrder, getOrder } from "../../services/order";
 
 export default class TableOrder extends Component {
   price = () => {
@@ -16,6 +17,11 @@ export default class TableOrder extends Component {
       console.log("this.state.isLoading before return", this.state.isLoading1);
       return <div>Loading ...</div>;
     }
+    if (!this.props.order) {
+      console.log("this.state.isLoading before return", this.state.isLoading1);
+      return <div>NO ORDERS YET</div>;
+    }
+
     return (
       <div className="table-order-container">
         {console.log("props.order inside Table order", this.props.order)}
@@ -50,6 +56,18 @@ export default class TableOrder extends Component {
                 <td>
                   {" "}
                   <h3> = {el.dishType.price * el.units} €</h3>
+                </td>
+                <td>
+                  <button
+                    onClick={() =>
+                      this.props.handleRemoveDish(
+                        this.props.order,
+                        el.dishType._id
+                      )
+                    }
+                  >
+                    Remove
+                  </button>
                 </td>
               </tr>
             ))}

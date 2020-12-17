@@ -8,6 +8,8 @@ import {
   getOrder,
   getTotal,
   changeToPaid,
+  removeDishFromOrder,
+  getAllOrders,
 } from "../../services/order";
 import "./OrderPage.css";
 export default class OrderPage extends Component {
@@ -23,11 +25,11 @@ export default class OrderPage extends Component {
       getMenu(),
       getOrder({ table: this.props.match.params.table }),
     ]).then((responsesBack) => {
-      console.log("LOOK HERE MARC", responsesBack);
+      console.log("responsesBackInDidMount", responsesBack);
 
       this.setState({
         menu: responsesBack[0],
-        order: responsesBack[1],
+        order: responsesBack[1][0],
         isLoading: false,
       });
     });
@@ -37,7 +39,20 @@ export default class OrderPage extends Component {
     changeToPaid({ table: this.props.match.params.table }).then(
       (responseBack) => {
         console.log("this is the responseback in ChangeToPaid:", responseBack);
-        this.setState({ order: responseBack });
+        this.setState({ order: responseBack[0] });
+      }
+    );
+  };
+
+  handleRemoveDish = (order, dishId) => {
+    console.log("this is order in handleRemove ", order);
+    console.log("this is dishId in handleRemove ", dishId);
+
+    removeDishFromOrder({ orderId: order._id, dishId: dishId }).then(
+      (order) => {
+        console.log("received orders after removing", order);
+
+        this.setState({ order: order[0] });
       }
     );
   };
@@ -63,13 +78,15 @@ export default class OrderPage extends Component {
         <MenuNavbar tableNumber={tableNumber} />
         <div>
           <TableOrder
-            order={this.state.order[0]}
+            order={this.state.order}
             isLoading={this.state.isLoading}
+            handleRemoveDish={this.handleRemoveDish}
+            tableNumber={tableNumber}
           />
         </div>
         <div>
-          {this.state.order[0].paid ? <h3>PAID</h3> : <h3>Pending to pay</h3>}
-          {this.state.order[0].paid ? (
+          {this.state.order.paid ? <h3>PAID</h3> : <h3>Pending to pay</h3>}
+          {this.state.order.paid ? (
             ""
           ) : (
             <Payment
