@@ -9,10 +9,10 @@ export default class MenuPage extends Component {
     const tableNumber = this.props.match.params.table;
 
     return (
-      <div>
-        <MenuNavbar tableNumber={tableNumber} />
+      <div className="has-navbar-fixed-top">
+        <MenuNavbar className="section" tableNumber={tableNumber} />
 
-        <MenuList tableNumber={tableNumber} />
+        <MenuList className="section" tableNumber={tableNumber} />
       </div>
     );
   }

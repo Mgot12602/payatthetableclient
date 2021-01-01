@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./TableOrder.css";
+// import "./TableOrder.css";
 import { removeDishFromOrder, getOrder } from "../../services/order";
 
 export default class TableOrder extends Component {

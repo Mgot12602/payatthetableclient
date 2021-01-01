@@ -38,33 +38,70 @@ export default class HomePage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="hero is-fullheight-with-navbar">
         <Navbar handleLogout={this.handleLogout} user={this.state.user} />
+
         <div
-          className="main-container"
-          style={{ backgroundImage: `url(/images/coolrestaurant.jpg)` }}
+          className="section main-image"
+          style={{
+            backgroundImage: `url(/images/coolrestaurant.jpg)`,
+          }}
         >
-          <h1>The Iron Restaurant</h1>
-          <div className="main-box">
-            <div className="option-box">
-              <h2>Scan the QR code on your table</h2>
+          <section className="section">
+            <div className="tile-ancestor">
+              <div className="tile is-parent is-justify-content-center">
+                <div className="tile is-child box has-text-centered has-background-primary is-4 is-justify-content-center">
+                  <h1 className="title ">The Iron Restaurant</h1>
+                </div>
+              </div>
             </div>
-            <div></div>
-            <div className="option-box">
-              <form onSubmit={this.handleSubmit}>
-                <label id="table-number">
-                  <h3> Enter your table Number:</h3>
-                </label>
-                <input
-                  name="tableNumber"
-                  type="number"
-                  value={this.state.tableNumber}
-                  onChange={this.handleChange}
-                />
-                <button class="home-button" type="submit">
-                  Enter
-                </button>
-              </form>
+          </section>
+          <div className="section">
+            <div className="container ">
+              <div className="tile is-ancestor evenly ">
+                <div className="tile is-parent  is-4 ">
+                  <div className="tile is-child box has-background-primary is-justify-content-center">
+                    <h2 className="title has-text-centered">
+                      Scan the QR code on your table
+                    </h2>
+                  </div>
+                </div>
+                <div className="tile is-parent  is-4 ">
+                  <div className="tile is-child box has-background-primary has-text-centered">
+                    <form
+                      className="is-justify-content-center"
+                      onSubmit={this.handleSubmit}
+                    >
+                      <div className="field">
+                        <label className="label" id="table-number">
+                          Enter your table Number for the Demo:
+                        </label>
+                        <div className="control">
+                          <div className="column is-4 is-offset-4">
+                            <input
+                              className="input"
+                              name="tableNumber"
+                              type="number"
+                              value={this.state.tableNumber}
+                              onChange={this.handleChange}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="field ">
+                        <div className="control ">
+                          <button
+                            className="button is-link is-large"
+                            type="submit"
+                          >
+                            Enter
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -87,7 +87,7 @@ class App extends React.Component {
     }
 
     return (
-      <div className="container">
+      <div>
         <Switch>
           <NormalRoute exact path={PATHS.HOMEPAGE} component={HomePage} />
           <NormalRoute

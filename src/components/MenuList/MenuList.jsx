@@ -5,8 +5,6 @@ import MenuFooterbar from "./../../components/MenuFooterbar/MenuFooterbar";
 import OrderPage from "../../pages/Customer/OrderPage";
 import { addDishToOrder, getOrder } from "../../services/order";
 import { Link } from "react-router-dom";
-import "./MenuList.css";
-import "./../MenuFooterbar/MenuFooterbar.css";
 
 export default class MenuList extends Component {
   state = {
@@ -87,8 +85,7 @@ export default class MenuList extends Component {
     }
     console.log("order", this.state.order);
     return (
-      <div>
-        <div className="margin"></div>
+      <div className="container">
         {this.state.menu[0].dishes.map((el) => (
           <div>
             <Dish
@@ -99,29 +96,26 @@ export default class MenuList extends Component {
             />
           </div>
         ))}
-        <div>
-          {(this.state.order && (
-            <nav className="nav-MenuFooterbar">
-              {" "}
-              <h1>
+
+        {(this.state.order && (
+          <nav className="navbar is-fixed-bottom">
+            <div className="container">
+              <h1 className="is-size-2 navbar-item">
                 Items selected:{" "}
                 {/*this.state.order.totalItems*/ this.state.totalItems || "0"}{" "}
                 Total: {this.state.price} €{" "}
               </h1>{" "}
-              <button class="button">
-                <Link to={`/${this.props.tableNumber}/order`}>
+              <button className="button is-success navbar-item">
+                <Link
+                  className="has-text-white"
+                  to={`/${this.props.tableNumber}/order`}
+                >
                   Finish your Order
                 </Link>
               </button>{" "}
-            </nav>
-          )) || <p>Loading...</p>}
-        </div>
-        {/* <MenuFooterbar
-          tableNumber={this.props.tableNumber}
-          order={this.state.order[0]}
-          isLoading={this.state.isLoading}
-        /> */}
-        <div className="margin-bottom"></div>
+            </div>
+          </nav>
+        )) || <p>Loading...</p>}
       </div>
     );
   }

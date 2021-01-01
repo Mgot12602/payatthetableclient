@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { signup } from "../services/auth";
-import "./auth.css";
+// import "./auth.css";
 import * as PATHS from "../utils/paths";
 
 export default class Signup extends Component {

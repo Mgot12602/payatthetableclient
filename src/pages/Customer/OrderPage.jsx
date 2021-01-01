@@ -11,7 +11,7 @@ import {
   removeDishFromOrder,
   getAllOrders,
 } from "../../services/order";
-import "./OrderPage.css";
+
 export default class OrderPage extends Component {
   state = {
     isLoading: true,

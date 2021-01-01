@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./MenuFooterbar.css";
+// import "./MenuFooterbar.css";
 
 export default class MenuFooterbar extends Component {
   state = {
@@ -41,16 +41,13 @@ export default class MenuFooterbar extends Component {
     return (
       <div>
         {(this.state.order && (
-          <nav className="nav-MenuFooterbar">
+          <nav className="navbar is-fixed-bottom">
             {" "}
             <h1>
-             Items selected: // {this.state.order.totalItems} Total: {" "}
-              {this.state.price} €{console.log(this.props.order)}
-              {" "}
-            </h1>
-            {" "}
-            {/* <Link to={`/${props.tableNumber}/order`}>Finish your Order</Link> */}
-            {" "}
+              Items selected: // {this.state.order.totalItems} Total:{" "}
+              {this.state.price} €{console.log(this.props.order)}{" "}
+            </h1>{" "}
+            {/* <Link to={`/${props.tableNumber}/order`}>Finish your Order</Link> */}{" "}
           </nav>
         )) || <p>Loading...</p>}
       </div>
