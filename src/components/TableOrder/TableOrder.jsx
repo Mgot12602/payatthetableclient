@@ -23,28 +23,31 @@ export default class TableOrder extends Component {
     }
 
     return (
-      <div className="table-order-container">
+      <div className="table-order-container mx-0">
         {console.log("props.order inside Table order", this.props.order)}
-        <div className="dishtype-box">
-          <table>
-            <tr>
-              <th>
-                <h2>Item</h2>
-              </th>
-              <th>
-                <h2>Units</h2>
-              </th>
-              <th>
-                <h2>U.Price</h2>
-              </th>
-              <th>
-                <h2>Subtotal</h2>
-              </th>
-            </tr>
+
+        <table className="table has-text-centered mx-0">
+          <thead className="is-size-6-mobile">
+            <th>
+              <h2 className=" is-size-6-mobile">Item</h2>
+            </th>
+            <th>
+              <h2 className=" is-size-6-mobile ">Units</h2>
+            </th>
+            <th>
+              <h2 className=" is-size-6-mobile"></h2>
+            </th>
+            <th>
+              <h2 className=" is-size-6-mobile">Total</h2>
+            </th>
+            <th></th>
+          </thead>
+
+          <tbody className="has-text-centered">
             {this.props.order.dishesOrdered.map((el) => (
               <tr>
                 <td>
-                  <h3>{el.dishType.name}</h3>
+                  <p>{el.dishType.name}</p>
                 </td>
                 <td>
                   {" "}
@@ -55,11 +58,12 @@ export default class TableOrder extends Component {
                 </td>
                 <td>
                   {" "}
-                  <h3> = {el.dishType.price * el.units} €</h3>
+                  <h3> {el.dishType.price * el.units} €</h3>
                 </td>
                 <td>
                   {!this.props.order.paid ? (
                     <button
+                      className="button is-small is-danger is-light"
                       onClick={() =>
                         this.props.handleRemoveDish(
                           this.props.order,
@@ -75,8 +79,9 @@ export default class TableOrder extends Component {
                 </td>
               </tr>
             ))}
-          </table>
-        </div>
+          </tbody>
+        </table>
+
         <h2>Total: {this.price()}€</h2>
       </div>
     );

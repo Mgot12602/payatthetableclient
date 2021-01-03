@@ -16,6 +16,7 @@ import CreateDish from "./pages/Admin/CreateDish";
 import MenuPage from "./pages/Customer/MenuPage";
 import OrderPage from "./pages/Customer/OrderPage";
 import { Route } from "react-router-dom";
+import "./sass/mystyles.scss";
 
 class App extends React.Component {
   state = {

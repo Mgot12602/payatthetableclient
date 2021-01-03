@@ -21,7 +21,7 @@ export default class Dish extends Component {
                 <p className="  title is-size-4-mobile">
                   {this.props.dish.name}
                 </p>
-                <p className="heading  is-size-5-mobile">
+                <p className="heading  is-size-6-mobile">
                   {this.props.dish.tags}
                 </p>
               </div>

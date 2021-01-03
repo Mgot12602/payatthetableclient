@@ -33,9 +33,11 @@ export default function CheckoutForm(props) {
     style: {
       base: {
         color: "#32325d",
+        border: "1px",
         fontFamily: "Arial, sans-serif",
         fontSmoothing: "antialiased",
         fontSize: "16px",
+
         "::placeholder": {
           color: "#32325d",
         },
@@ -71,21 +73,28 @@ export default function CheckoutForm(props) {
     }
   };
   return (
-    <form className="stripe" id="payment-form" onSubmit={handleSubmit}>
-      <CardElement
-        id="card-element"
-        options={cardStyle}
-        onChange={handleChange}
-      />
-      <button
-        className="stripe"
-        disabled={processing || disabled || succeeded}
-        id="submit"
-      >
-        <span id="button-text">
-          {processing ? <div className="spinner" id="spinner"></div> : "Pay"}
-        </span>
-      </button>
+    <form id="payment-form" onSubmit={handleSubmit}>
+      <div className="field">
+        <label className="label">Enter your payment details:</label>
+        <div className="control">
+          <CardElement
+            id="card-element"
+            options={cardStyle}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
+      <div className="field">
+        <button
+          className="button is-success"
+          disabled={processing || disabled || succeeded}
+          id="submit"
+        >
+          <span id="button-text">
+            {processing ? <div className="spinner" id="spinner"></div> : "Pay"}
+          </span>
+        </button>
+      </div>
       {/* Show any error that happens when processing the payment */}
       {error && (
         <div className="card-error" role="alert">

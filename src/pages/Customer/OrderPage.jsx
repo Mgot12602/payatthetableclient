@@ -72,11 +72,11 @@ export default class OrderPage extends Component {
 
     const tableNumber = this.props.match.params.table;
     return (
-      <div className="orderpage-container">
+      <div className="has-navbar-fixed-top">
         {console.log("this.state.order", this.state.order)}
 
         <MenuNavbar tableNumber={tableNumber} />
-        <div>
+        <div className="section mx-0">
           <TableOrder
             order={this.state.order}
             isLoading={this.state.isLoading}
@@ -84,22 +84,25 @@ export default class OrderPage extends Component {
             tableNumber={tableNumber}
           />
         </div>
-        <div>
-          {this.state.order.paid ? (
-            <h3 id="green">
-              Thank you! Your dish is being prepared and soon we will serve you.{" "}
-            </h3>
-          ) : (
-            <h3 id="red">Pending to pay</h3>
-          )}
-          {this.state.order.paid ? (
-            ""
-          ) : (
-            <Payment
-              tableNumber={tableNumber}
-              changeToPaid={this.changeToPaid}
-            />
-          )}
+        <div className="section">
+          <div className="container">
+            {this.state.order.paid ? (
+              <h3 className="has-text-success">
+                Thank you! Your dish is being prepared and soon we will serve
+                you.{" "}
+              </h3>
+            ) : (
+              <h3 className="has-text-danger">Pending to pay</h3>
+            )}
+            {this.state.order.paid ? (
+              ""
+            ) : (
+              <Payment
+                tableNumber={tableNumber}
+                changeToPaid={this.changeToPaid}
+              />
+            )}
+          </div>
         </div>
       </div>
     );

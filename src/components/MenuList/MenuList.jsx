@@ -100,17 +100,17 @@ export default class MenuList extends Component {
         {(this.state.order && (
           <nav className="navbar is-fixed-bottom">
             <div className="container">
-              <h1 className="is-size-2 navbar-item">
+              <h1 className="is-size-2 navbar-item is-size-5-mobile">
                 Items selected:{" "}
                 {/*this.state.order.totalItems*/ this.state.totalItems || "0"}{" "}
                 Total: {this.state.price} €{" "}
               </h1>{" "}
               <button className="button is-success navbar-item">
                 <Link
-                  className="has-text-white"
+                  className="has-text-white  is-size-5-mobile"
                   to={`/${this.props.tableNumber}/order`}
                 >
-                  Finish your Order
+                  Finish
                 </Link>
               </button>{" "}
             </div>

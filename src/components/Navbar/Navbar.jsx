@@ -14,7 +14,7 @@ const Navbar = (props) => {
     <nav className="navbar has-background-primary is-fixed-top">
       <div className="container">
         <div className="navbar-start">
-          <Link to="/" className=" navbar-item is-size-3">
+          <Link to="/" className=" navbar-item is-size-3 is-size-5-mobile">
             Pay at the table App
           </Link>
         </div>

@@ -10,7 +10,7 @@ export default function MenuNavbar(props) {
   // Get the navbar
 
   return (
-    <div className="columns">
+    <div className="columns ">
       <div className="column is-full is-mobile">
         <nav className="navbar is-fixed-top has-background-primary">
           <div className="container">
