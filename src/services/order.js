@@ -26,11 +26,9 @@ const orderService = axios.create({
 });
 
 export function addNewOrder(table) {
-  console.log("table inside Order Service", table);
   return orderService
     .post("/addNewOrder", table)
     .then((res) => {
-      console.log("this is the new order in blank from the server", res.data);
       return res.data;
     })
     .catch(internalServerError);
@@ -40,7 +38,6 @@ export function addDishToOrder(dishAndTable) {
   return orderService
     .post("/addDishToOrder", dishAndTable)
     .then((res) => {
-      console.log("new and updated orderfrom the server", res.data);
       return res.data;
     })
     .catch(internalServerError);
@@ -49,7 +46,6 @@ export function getOrder(tableNumber) {
   return orderService
     .post("/getOrder", tableNumber)
     .then((res) => {
-      console.log("this is the response of the getOrder function", res.data);
       return res.data;
     })
     .catch(internalServerError);
@@ -59,7 +55,6 @@ export function getTotal(table) {
   return orderService
     .post("/getTotal", table)
     .then((res) => {
-      console.log("this is the get total in order service", res.data);
       return res.data;
     })
     .catch(internalServerError);
@@ -69,7 +64,6 @@ export function changeToPaid(table) {
   return orderService
     .post("/changeToPaid", table)
     .then((res) => {
-      console.log("new and updated orderfrom the server", res.data);
       return res.data;
     })
     .catch(internalServerError);
@@ -79,7 +73,6 @@ export function getAllOrders() {
   return orderService
     .get("/getAllOrders")
     .then((res) => {
-      console.log("get al orders", res.data);
       return res.data;
     })
     .catch(internalServerError);
@@ -89,7 +82,6 @@ export function clearTable(table) {
   return orderService
     .post("/clearTable", table)
     .then((res) => {
-      console.log("response in order.js for clear table", res.data);
       return res.data;
     })
     .catch(internalServerError);
@@ -98,7 +90,6 @@ export function removeDishFromOrder(orderIdAndDish) {
   return orderService
     .post("/removeDishFromOrder", orderIdAndDish)
     .then((res) => {
-      console.log("response in order.js remove dish", res.data);
       return res.data;
     })
     .catch(internalServerError);

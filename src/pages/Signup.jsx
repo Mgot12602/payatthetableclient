@@ -25,7 +25,7 @@ export default class Signup extends Component {
     };
     signup(credentials).then((res) => {
       // successful signup
-      console.log(res);
+
       if (!res.status) {
         // unsuccessful signup
       }

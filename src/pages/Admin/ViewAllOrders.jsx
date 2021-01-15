@@ -10,16 +10,13 @@ export default class ViewAllOrders extends Component {
 
   componentDidMount = () => {
     getAllOrders().then((orders) => {
-      console.log("Look here Marc", orders);
       this.setState({ orders: orders });
     });
   };
 
   handleClear = (table) => {
     clearTable({ table: table }).then((orders) => {
-      console.log("received orders after clearing", orders);
       getAllOrders().then((orders) => {
-        console.log("Look here Marc2", orders);
         this.setState({ orders: orders });
       });
       // this.setState({ orders: orders });
@@ -28,7 +25,6 @@ export default class ViewAllOrders extends Component {
 
   render() {
     if (!this.state.orders) {
-      console.log("this.state.isLoading before return", this.state.orders);
       return <div>NO ORDERS ...</div>;
     }
     return (

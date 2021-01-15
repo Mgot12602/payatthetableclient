@@ -11,8 +11,6 @@ export default class HomePage extends Component {
   };
 
   handleChange = (event) => {
-    console.log(event.target.name, ": ", event.target.value);
-
     this.setState({
       tableNumber: event.target.value,
     });
@@ -22,9 +20,7 @@ export default class HomePage extends Component {
     event.preventDefault();
     const table = { table: this.state.tableNumber };
     addNewOrder(table)
-      .then((order) => {
-        console.log("this is the created order", order);
-      })
+      .then(() => {})
       .then(() => {
         // addNewOrder(this.state.table).then((res) => {
         //   this.setState({

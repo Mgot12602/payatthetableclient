@@ -35,22 +35,18 @@ export function addNewDish(dish) {
 }
 
 export function addDishToMenu(dish) {
-  console.log("dish inside addDishToMenu post call: ", dish);
   return menuService
     .post("/addDishToMenu", dish)
     .then((res) => {
-      console.log("res.data inside menujs", res.data);
       return res.data;
     })
     .catch(internalServerError);
 }
 
 export function removeDishFromMenu(dish) {
-  console.log("dish inside addDishToMenu post call: ", dish);
   return menuService
     .post("/removeDishFromMenu", dish)
     .then((res) => {
-      console.log("res.data inside menujs", res.data);
       return res.data;
     })
     .catch(internalServerError);

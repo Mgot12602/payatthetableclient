@@ -21,11 +21,9 @@ export default class CreateMenu extends Component {
   componentDidMount = () => {
     console.log("what is the data in this.props.user?", this.props.user);
     getAllDishes().then((responseBack) => {
-      console.log("responseBack:", responseBack);
       this.setState({ dishes: responseBack, user: this.props.user });
     });
     getMenu().then((responseback) => {
-      console.log("get menu in line 22 CreateMenu.jsx", this.state.menu);
       this.setState({ menu: responseback, isLoading: false });
     });
   };
@@ -33,14 +31,10 @@ export default class CreateMenu extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log("this.state.selectedDishName", this.state.selectedDishName);
     const filteredDish = this.state.dishes.filter((el) => {
-      //   console.log(
-      //     `el.name: ${el.name} and this.state.selectedDishName: ${this.state.selectedDishName}`
-      //   );
       return el.name === this.state.selectedDishName;
     });
-    console.log("what is filtered dish:", filteredDish);
+
     const filteredDishAndUser = {
       filteredDish: filteredDish,
       user: this.state.user,
@@ -63,7 +57,7 @@ export default class CreateMenu extends Component {
       //   );
       return el.name === this.state.selectedDishName;
     });
-    console.log("what is filtered dish:", filteredDish);
+
     const filteredDishAndUser = {
       filteredDish: filteredDish,
       user: this.state.user,
@@ -77,7 +71,6 @@ export default class CreateMenu extends Component {
   };
 
   handleChange = (event) => {
-    console.log(event.target.name, ": ", event.target.value);
     this.setState({
       selectedDishName: event.target.value,
     });
@@ -86,16 +79,11 @@ export default class CreateMenu extends Component {
   render() {
     const allDishes = this.state.dishes;
     if (this.state.isLoading) {
-      console.log("this.state.isLoading before return", this.state.isLoading);
       return <div>Loading ...</div>;
     }
 
     return (
       <div>
-        {console.log(
-          "this.state.isLoading inside return",
-          this.state.isLoading
-        )}
         <AdminNavbar
           handleLogout={this.props.handleLogout}
           onChange={this.handleChange}
@@ -109,7 +97,6 @@ export default class CreateMenu extends Component {
               value={this.state.selectedDishName}
               onChange={this.handleChange}
             >
-              {console.log(this.state.dishes)}
               {allDishes.map((el) => (
                 <option>{el.name}</option>
               ))}
@@ -120,7 +107,6 @@ export default class CreateMenu extends Component {
           </form>
           <div className="createMenuContainer">
             <h1>Current Menu</h1>
-            {console.log("this.state.menu", this.state.menu)}
 
             {this.state.menu[0].dishes.map((el) => (
               <div>{el.name}</div>
@@ -134,7 +120,6 @@ export default class CreateMenu extends Component {
               value={this.state.selectedDishName}
               onChange={this.handleChange}
             >
-              {console.log(this.state.dishes)}
               {allDishes.map((el) => (
                 <option>{el.name}</option>
               ))}

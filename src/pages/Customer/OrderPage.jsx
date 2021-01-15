@@ -25,7 +25,7 @@ export default class OrderPage extends Component {
       getMenu(),
       getOrder({ table: this.props.match.params.table }),
     ]).then((responsesBack) => {
-      console.log("responsesBackInDidMount", responsesBack);
+
 
       this.setState({
         menu: responsesBack[0],
@@ -38,19 +38,18 @@ export default class OrderPage extends Component {
   changeToPaid = () => {
     changeToPaid({ table: this.props.match.params.table }).then(
       (responseBack) => {
-        console.log("this is the responseback in ChangeToPaid:", responseBack);
+      
         this.setState({ order: responseBack[0] });
       }
     );
   };
 
   handleRemoveDish = (order, dishId) => {
-    console.log("this is order in handleRemove ", order);
-    console.log("this is dishId in handleRemove ", dishId);
+   
 
     removeDishFromOrder({ orderId: order._id, dishId: dishId }).then(
       (order) => {
-        console.log("received orders after removing", order);
+    
 
         this.setState({ order: order[0] });
       }
@@ -59,21 +58,21 @@ export default class OrderPage extends Component {
 
   handleClick = () => {
     getTotal({ table: this.props.match.params.table }).then((total) => {
-      console.log("getTotal", total);
+  
       this.setState({ total: total });
     });
   };
 
   render() {
     if (this.state.isLoading) {
-      console.log("this.state.isLoading before return", this.state.isLoading);
+      
       return <div>Loading ...</div>;
     }
 
     const tableNumber = this.props.match.params.table;
     return (
       <div className="has-navbar-fixed-top">
-        {console.log("this.state.order", this.state.order)}
+        
 
         <MenuNavbar tableNumber={tableNumber} />
         <div className="section mx-0">

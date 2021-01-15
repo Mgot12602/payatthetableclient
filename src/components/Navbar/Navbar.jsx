@@ -8,8 +8,6 @@ import * as PATHS from "../../utils/paths";
 const Navbar = (props) => {
   const [isActive, setisActive] = React.useState("");
 
-  console.log("isActive", isActive);
-
   return (
     <nav className="navbar has-background-primary is-fixed-top">
       <div className="container">

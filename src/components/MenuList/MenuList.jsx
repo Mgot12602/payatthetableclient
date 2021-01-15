@@ -18,7 +18,6 @@ export default class MenuList extends Component {
   componentDidMount = () => {
     Promise.all([getMenu(), getOrder({ table: this.props.tableNumber })]).then(
       (responsesBack) => {
-        console.log("LOOK HERE MARC", responsesBack[1][0]);
         let price = 0;
         if (responsesBack[1][0].dishesOrdered) {
           price = responsesBack[1][0].dishesOrdered.reduce((acc, el) => {
@@ -27,14 +26,11 @@ export default class MenuList extends Component {
             // );
             return acc + el.dishType.price * el.units;
           }, 0);
-          console.log("price", price);
         }
 
         let units = responsesBack[1][0].dishesOrdered.reduce((acc, el) => {
           return acc + el.units;
         }, 0);
-
-        console.log("units", units);
 
         this.setState({
           menu: responsesBack[0],
@@ -53,23 +49,15 @@ export default class MenuList extends Component {
       table: table,
     };
 
-    console.log("onclick function was executed");
-
     addDishToOrder(dishAndTable).then((newAndUpdatedOrder) => {
-      console.log("This is the updated order", newAndUpdatedOrder);
       let price = newAndUpdatedOrder.dishesOrdered.reduce((acc, el) => {
-        console.log(
-          `el.dishType.price : ${el.dishType.price} and el.units: ${el.units}=>acc:${acc} `
-        );
         return acc + el.dishType.price * el.units;
       }, 0);
-      console.log("price", price);
 
       let units = newAndUpdatedOrder.dishesOrdered.reduce((acc, el) => {
         return acc + el.units;
       }, 0);
 
-      console.log("units", units);
       this.setState({
         order: newAndUpdatedOrder,
         price: price,
@@ -80,10 +68,9 @@ export default class MenuList extends Component {
 
   render() {
     if (this.state.isLoading) {
-      console.log("this.state.isLoading before return", this.state.isLoading1);
       return <div>Loading ...</div>;
     }
-    console.log("order", this.state.order);
+
     return (
       <div className="container">
         {this.state.menu[0].dishes.map((el) => (

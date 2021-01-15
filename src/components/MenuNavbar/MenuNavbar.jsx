@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 // import "./MenuNavbar.css";
 
 export default function MenuNavbar(props) {
-  console.log(props);
-
   // When the user scrolls the page, execute myFunction
 
   // Get the navbar
